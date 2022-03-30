@@ -1,0 +1,7 @@
+.header {
+  display: grid;
+  grid-auto-rows: 1fr;
+  grid-template-columns: 1fr 2fr;
+  border-bottom: 2px solid var(--black);
+  padding-left: var(--size-6);
+}
