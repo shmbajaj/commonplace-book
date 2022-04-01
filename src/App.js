@@ -1,4 +1,5 @@
-import { FilterBar, FeatureBar, Main } from "components";
+import { FilterBar, FeatureBar } from "components";
+import "./styles/styles.variables.css";
 
 function getStyle() {
   return {
