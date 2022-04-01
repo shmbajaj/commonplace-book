@@ -1,21 +1,21 @@
 import { FilterBar, FeatureBar, Main } from "components";
 
-function getStyle(){
+function getStyle() {
   return {
-    display:"grid",
+    display: "grid",
     gridTemplateRows: "1fr",
-    gridTemplateColumns:"15% 25% 60%",
-  }
+    gridTemplateColumns: "15% 60% 25%",
+  };
 }
 
 function App() {
   return (
-    <div style={getStyle()}> 
+    <div style={getStyle()}>
       <FeatureBar />
+      <div></div>
       <FilterBar />
-      <Main />
     </div>
-  )
+  );
 }
 
 export default App;
