@@ -1,0 +1,23 @@
+.navbar {
+  margin-left: auto;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 1fr 2fr;
+  text-align: center;
+}
+
+.navbar_link {
+  color: var(--black);
+  border-left: 2px solid var(--black);
+  padding: var(--size-11);
+}
+
+.navbar_action:hover {
+  background-color: var(--logo-color);
+  color: var(--black);
+}
+
+.navbar_action_cta {
+  background-color: var(--black);
+  color: var(--white);
+}
