@@ -1,0 +1,19 @@
+:root {
+  --min-hero-width: calc(var(--size-9) * 15);
+  --max-hero-width: calc(var(--size-9) * 19);
+  --perefered-hero-width: calc(var(--size-9) * 16);
+}
+
+.hero {
+  width: var(--perefered-hero-width);
+  max-width: var(--max-hero-width);
+}
+
+.hero_link {
+  color: var(--black);
+}
+
+.hero_image {
+  vertical-align: top;
+  width: var(--size-15);
+}
