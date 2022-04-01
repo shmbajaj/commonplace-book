@@ -15,7 +15,7 @@ function Feature({ iconText, iconName }) {
         >
           {iconName}
         </span>
-        <span className={`h4 ${styles.iconText}`}>{iconText}</span>
+        <span className={`h3 ${styles.iconText}`}>{iconText}</span>
       </div>
     </button>
   );
