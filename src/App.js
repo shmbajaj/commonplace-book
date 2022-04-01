@@ -1,11 +1,20 @@
-import { Header, Footer } from "components";
+import { FilterBar, FeatureBar } from "components";
+import "./styles/styles.variables.css";
+
+function getStyle() {
+  return {
+    display: "grid",
+    gridTemplateRows: "1fr",
+    gridTemplateColumns: "15% 60% 25%",
+  };
+}
 
 function App() {
   return (
-    <div style={{ display: "grid" }}>
-      <Header />
-      <div style={{ height: "100vh" }}></div>
-      <Footer />
+    <div style={getStyle()}>
+      <FeatureBar />
+      <div></div>
+      <FilterBar />
     </div>
   );
 }

@@ -1,0 +1,12 @@
+.label {
+  min-height: var(--size-10);
+  max-height: calc(var(--size-6) * 2.5);
+  border: var(--size-1) solid var(--color-lightslategrey);
+  border-radius: var(--size-6);
+  padding: var(--size-2);
+  background-color: var(--color-e5e5e5);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  color: var(--black);
+}

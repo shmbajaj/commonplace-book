@@ -1,4 +1,5 @@
-import { Header } from "./Header";
-import { Footer } from "./Footer/Footer";
 
-export { Header, Footer };
+import { FilterBar } from "./FilterBar/FilterBar";
+import { FeatureBar } from "./FeatureBar";
+
+export { FilterBar, FeatureBar };

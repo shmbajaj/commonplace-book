@@ -1,0 +1,55 @@
+.feature {
+  padding: var(--size-5) var(--size-9);
+  padding-left: var(--size-11);
+  background: none;
+  border: 0;
+}
+
+.feature:hover {
+  background-color: var(--color-3a3a3a);
+  font-weight: bolder;
+}
+
+.feature:hover .icon {
+  color: var(--white);
+}
+
+.cta {
+  display: flex;
+  align-items: center;
+  padding: var(--size-5) var(--size-9);
+  cursor: pointer;
+  border: var(--size-1) solid transparent;
+}
+
+.icon {
+  width: var(--size-11);
+  color: var(--logo-color);
+  pointer-events: none;
+  margin-right: var(--size-8);
+}
+
+.iconText {
+  color: var(--white);
+  text-align: left;
+  pointer-events: none;
+  font-weight: bold;
+}
+
+.feature_new_note:hover {
+  stroke: var(--color-white-stroke);
+  background-color: var(--logo-color);
+}
+
+.feature_new_note:hover .icon,
+.feature_new_note:hover .iconText {
+  stroke: var(--color-white-stroke);
+  color: var(--white);
+}
+
+.icon_new_note {
+  stroke: var(--color-white-stroke);
+  color: var(--black);
+  background: var(--logo-color);
+  border-radius: 0.3rem;
+}

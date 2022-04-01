@@ -1,0 +1,22 @@
+.metaNote {
+  display: grid;
+  grid-template-rows: calc(var(--size-9) * 3) 1fr;
+  grid-template-columns: 1fr;
+  border-bottom: var(--size-2) solid var(--color-light-gray);
+  cursor: pointer;
+  z-index: 2;
+}
+
+.metaNote .title {
+  font-weight: bold;
+  font-size: var(--size-10);
+  margin-block-start: 0;
+  margin-block-end: 0;
+  padding: var(--size-3) var(--size-9);
+  padding-bottom: 0;
+}
+
+.metaNote.active {
+  color: var(--white);
+  background-color: var(--logo-color);
+}

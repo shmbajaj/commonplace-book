@@ -1,0 +1,25 @@
+.listWrapper {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: var(--size-15) 1fr;
+  padding: 0 var(--size-3) var(--size-3) var(--size-9);
+}
+
+.labelsList {
+  display: grid;
+  row-gap: var(--size-3);
+  column-gap: var(--size-2);
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(calc(var(--size-9) * 3), calc(var(--size-9) * 5))
+  );
+}
+
+.listWrapper .listIcon {
+  color: var(--logo-color);
+}
+
+.listWrapper .listIconActive {
+  color: var(--color-eaeaea);
+}
