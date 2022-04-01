@@ -1,29 +1,25 @@
 .listWrapper {
   display: grid;
   grid-template-rows: 1fr;
-  grid-template-columns: 40px 1fr;
-  padding: 0 4px 4px 16px;
+  grid-template-columns: var(--size-15) 1fr;
+  padding: 0 var(--size-3) var(--size-3) var(--size-9);
 }
 
 .labelsList {
   display: grid;
-  row-gap: 5px;
-  column-gap: 2px;
+  row-gap: var(--size-3);
+  column-gap: var(--size-2);
   grid-template-rows: 1fr;
-  grid-template-columns: repeat(auto-fill, minmax(50px, 80px));
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(calc(var(--size-9) * 3), calc(var(--size-9) * 5))
+  );
 }
-
-/* .labelsList > * {
-  align-self: left;
-} */
 
 .listWrapper .listIcon {
   color: var(--logo-color);
-  /* color: #2d2d2d; */
 }
 
 .listWrapper .listIconActive {
-  /* color: var(--white); */
-  color: #eaeaea;
-
+  color: var(--color-eaeaea);
 }

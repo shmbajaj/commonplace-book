@@ -1,14 +1,11 @@
-import styles from "./NoteList.styles.module.css";
 import { Note } from "./Note/Note";
 
 function NoteList({ list }) {
   return (
     <ul>
-      {list.map(({ title, labelsList, active }, index) => (
+      {list.map((note, index) => (
         <Note
-          title={title}
-          active={active}
-          labelsList={labelsList}
+          note = {note}
           key={index}
         />
       ))}

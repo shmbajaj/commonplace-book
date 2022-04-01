@@ -6,7 +6,7 @@
 }
 
 .feature:hover {
-  background-color: #3a3a3a;
+  background-color: var(--color-3a3a3a);
   font-weight: bolder;
 }
 
@@ -19,7 +19,7 @@
   align-items: center;
   padding: var(--size-5) var(--size-9);
   cursor: pointer;
-  border: 1px solid transparent;
+  border: var(--size-1) solid transparent;
 }
 
 .icon {
@@ -37,18 +37,18 @@
 }
 
 .feature_new_note:hover {
-  stroke: #fff;
+  stroke: var(--color-white-stroke);
   background-color: var(--logo-color);
 }
 
 .feature_new_note:hover .icon,
 .feature_new_note:hover .iconText {
-  stroke: #fff;
+  stroke: var(--color-white-stroke);
   color: var(--white);
 }
 
 .icon_new_note {
-  stroke: #fff;
+  stroke: var(--color-white-stroke);
   color: var(--black);
   background: var(--logo-color);
   border-radius: 0.3rem;

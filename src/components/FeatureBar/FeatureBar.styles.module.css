@@ -1,20 +1,18 @@
-.feature_bar_aside{
+.feature_bar_aside {
   min-width: calc(var(--size-9) * 15);
-  /* max-width: calc(var(--size-9) * 17); */
 }
 
 .feature_bar {
   list-style-type: none;
-  /* min-width: calc(var(--size-9) * 15);
-  max-width: calc(var(--size-9) * 17); */
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(auto-fill, minmax(20px, 50px));
-  background: #2d2d2d;
+  grid-template-rows: repeat(
+    auto-fill,
+    minmax(var(--size-10), calc(var(--size-9) * 3))
+  );
+  background: var(--color-2d2d2d);
   min-height: 100vh;
   max-height: 100vh;
-  padding-top: 16px;
-  padding-bottom: 16px;
+  padding-top: var(--size-9);
+  padding-bottom: var(--size-9);
 }
-
-

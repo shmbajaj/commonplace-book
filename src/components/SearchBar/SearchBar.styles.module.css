@@ -2,10 +2,9 @@
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 1fr 4fr;
-  /* max-width: calc(var(--size-9) * 17); */
   background: var(--white);
-  border: 1px solid lightgray;
-  border-radius: 5px;
+  border: var(--size-1) solid var(--color-light-gray);
+  border-radius: var(--size-3);
   padding: var(--size-6) var(--size-4);
 }
 
