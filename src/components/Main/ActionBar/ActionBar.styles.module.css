@@ -1,0 +1,43 @@
+.status_bar {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: 1fr;
+  row-gap: 15px;
+  z-index: 10;
+  background: #f5f5f5;
+  position: sticky;
+  bottom: 0;
+  border-top: 1px solid lightgrey;
+  margin-bottom: 32px;
+  padding-left: 16px;
+  padding-top: 4px;
+}
+
+.status_bar  :nth-child(1){
+    padding:0;
+}
+
+.action_bar{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.action_bar:first-child{
+    margin-right: auto;
+}
+
+.material_icons_extended {
+  text-align: center;
+  color: #777777;
+  cursor: pointer;
+  margin: auto 8px;
+}
+
+.material_icons_extended:last-of-type{
+    margin-right: 16px;
+}
+
+.material_icons_extended:hover {
+  background: #eae9e9;
+}

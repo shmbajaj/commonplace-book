@@ -1,22 +1,11 @@
-import { FilterBar, FeatureBar } from "components";
-import "./styles/styles.variables.css";
-
-function getStyle() {
-  return {
-    display: "grid",
-    gridTemplateRows: "1fr",
-    gridTemplateColumns: "15% 60% 25%",
-  };
-}
+import {  Main } from "components";
 
 function App() {
   return (
-    <div style={getStyle()}>
-      <FeatureBar />
-      <div></div>
-      <FilterBar />
+    <div> 
+      <Main />
     </div>
-  );
+  )
 }
 
 export default App;
