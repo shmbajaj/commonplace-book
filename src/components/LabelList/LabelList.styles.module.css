@@ -1,0 +1,29 @@
+.listWrapper {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 40px 1fr;
+  padding: 0 4px 4px 16px;
+}
+
+.labelsList {
+  display: grid;
+  row-gap: 5px;
+  column-gap: 2px;
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(50px, 80px));
+}
+
+/* .labelsList > * {
+  align-self: left;
+} */
+
+.listWrapper .listIcon {
+  color: var(--logo-color);
+  /* color: #2d2d2d; */
+}
+
+.listWrapper .listIconActive {
+  /* color: var(--white); */
+  color: #eaeaea;
+
+}

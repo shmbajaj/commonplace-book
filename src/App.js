@@ -1,11 +1,21 @@
-import {logoPath} from "./data";
+import { FilterBar, FeatureBar, Main } from "components";
+
+function getStyle(){
+  return {
+    display:"grid",
+    gridTemplateRows: "1fr",
+    gridTemplateColumns:"15% 25% 60%",
+  }
+}
+
 function App() {
   return (
-    <div className="App">
-      <img src={logoPath} style={{width:"40px", height:"30px"}}/>
-      <h1>I am note-taking-app</h1>
+    <div style={getStyle()}> 
+      <FeatureBar />
+      <FilterBar />
+      <Main />
     </div>
-  );
+  )
 }
 
 export default App;
