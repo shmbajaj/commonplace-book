@@ -47,4 +47,5 @@ const actionIcons = [
 ];
 
 const appName = "Commonplace Book";
+
 export { publicURL, logoPath, icons, actionIcons,appName };
