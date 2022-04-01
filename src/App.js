@@ -1,18 +1,8 @@
-import { FilterBar, FeatureBar, Main } from "components";
-
-function getStyle(){
-  return {
-    display:"grid",
-    gridTemplateRows: "1fr",
-    gridTemplateColumns:"15% 25% 60%",
-  }
-}
+import {  Main } from "components";
 
 function App() {
   return (
-    <div style={getStyle()}> 
-      <FeatureBar />
-      <FilterBar />
+    <div> 
       <Main />
     </div>
   )
