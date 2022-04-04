@@ -1,27 +1,38 @@
 const logoPath = `${process.env.PUBLIC_URL}/assets/logo/logo.svg`;
 const publicURL = process.env.PUBLIC_URL;
-const icons = [
-  {
-    iconText: "New Note",
-    iconName: "add_cirle",
-  },
+const features = [
   {
     iconText: "Notes",
     iconName: "article",
+    featureName: "notes",
+    isActive: false,
   },
   {
     iconText: "Labels",
     iconName: "label",
+    featureName: "labels",
+    isActive: false,
   },
   {
     iconText: "Archive",
     iconName: "archive",
+    featureName: "archived",
+    isActive: false,
   },
   {
     iconText: "Trash",
     iconName: "delete",
+    featureName: "deleted",
+    isActive: false,
   },
 ];
+
+const featureNotes = {
+  notes: false,
+  labels: false,
+  archived: false,
+  deleted: false,
+}
 
 const actionIcons = [
   {
@@ -44,8 +55,12 @@ const actionIcons = [
     iconText: "Trash",
     iconName: "delete",
   },
+  {
+    iconText: "Save Note",
+    iconName: "save",
+  },
 ];
 
 const appName = "Commonplace Book";
 
-export { publicURL, logoPath, icons, actionIcons,appName };
+export { publicURL, logoPath, features, actionIcons, appName, featureNotes };
