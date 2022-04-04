@@ -1,21 +1,32 @@
+import { useFeatureBar } from "context";
 import styles from "./Feature.styles.module.css";
 
-function Feature({ iconText, iconName }) {
+function Feature({ feature }) {
+  const { featureIconText, featureName } = feature;
+  const { state, dispatch } = useFeatureBar();
+
+  function onClickHandler(featureName) {
+    dispatch({ type: "TOGGLE_FEATURES", payload: featureName });
+  }
+
   return (
     <button
       className={`${styles.feature} ${
-        iconText === "New Note" ? styles.feature_new_note : ""
+        state.activeFeature === featureName ? styles.feature_is_selected : ""
       }`}
+      onClick={() => onClickHandler(featureName)}
     >
       <div className={styles.cta}>
         <span
           className={`material-icons ${styles.icon} ${
-            iconText === "New Note" ? styles.icon_new_note : ""
+            state.activeFeature === featureName
+              ? styles.feature_icon_is_selected
+              : ""
           }`}
         >
-          {iconName}
+          {featureName}
         </span>
-        <span className={`h3 ${styles.iconText}`}>{iconText}</span>
+        <span className={`h3 ${styles.iconText}`}>{featureIconText}</span>
       </div>
     </button>
   );

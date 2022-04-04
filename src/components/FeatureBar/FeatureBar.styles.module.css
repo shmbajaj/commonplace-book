@@ -6,13 +6,20 @@
   list-style-type: none;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(
+  /* grid-template-rows: repeat(
     auto-fill,
     minmax(var(--size-10), calc(var(--size-9) * 3))
+  ); */
+  grid-template-rows: repeat(
+    auto-fill,
+    minmax(var(--size-10), 80px)
   );
-  background: var(--color-2d2d2d);
+  /* background: var(--color-2d2d2d); */
   min-height: 100vh;
   max-height: 100vh;
-  padding-top: var(--size-9);
+  /* padding-top: var(--size-9); */
   padding-bottom: var(--size-9);
+  border-right: 1px solid;
+  background: #f5f5f5;
+  background: #ebebeb;
 }
