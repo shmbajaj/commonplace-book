@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
@@ -8,14 +7,54 @@ import TextAlign from "@tiptap/extension-text-align";
 import Highlight from "@tiptap/extension-highlight";
 import { MenuBar } from "./MenuBar/MenuBar";
 import "./RichTextEditor.styles.css";
-
+import { useNotes, useFeatureBar } from "context";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const CustomDocument = Document.extend({
   content: "heading block*",
 });
 
 function RichTextEditor() {
-  const [noteHTML, setNoteHTML] = useState("");
+  const [noteBackgroundColor, setNoteBackgroundColor] = useState("#ebebeb");
+  const [noteHtml, setNoteHtml] = useState(``);
+  const {
+    notesState: { activeNote },
+    replicaNote,
+    setReplicaNote,
+  } = useNotes();
+  const {state: {activeFeature}} = useFeatureBar();
+
+
+  useEffect(() => {
+    const { text } = activeNote;
+    setNoteBackgroundColor("#ebebeb");
+    if (editor) {
+      editor.options.editable = true;
+      editor.commands?.setContent(text, { emitUpdate: true });
+      if(activeFeature === "deleted"){
+        editor.options.editable = false;
+      }
+    }
+    
+  }, [activeNote]);
+
+  useEffect(() => {
+    if (replicaNote.backgroundColor !== "#ebebeb" && replicaNote.backgroundColor) {
+      setNoteBackgroundColor(replicaNote.backgroundColor);
+    }
+  }, [replicaNote.backgroundColor]);
+
+  useEffect(() => {
+    const re = /(?<=<h1>)(.*?)(?=<\/h1>)/g;
+    if (activeNote && noteHtml) {
+      const title = re.exec(noteHtml);
+      if (title) {
+        setReplicaNote((prev) => ({ ...prev, title: title[0] }));
+      }
+      setReplicaNote((prev) => ({ ...prev, text: noteHtml }));
+    }
+  }, [noteHtml]);
 
   const editor = useEditor({
     extensions: [
@@ -37,19 +76,19 @@ function RichTextEditor() {
         },
       }),
     ],
-    content: noteHTML,
+    content: noteHtml,
+    editable: false,
     onUpdate: ({ editor }) => {
       const noteHTML = editor.getHTML();
-      setNoteHTML(noteHTML);
+      setNoteHtml(noteHTML);
     },
   });
 
   return (
     <div className="textEditor">
       <MenuBar editor={editor} />
-      <EditorContent editor={editor} />
+      <EditorContent editor={editor}  style={{ backgroundColor: noteBackgroundColor}}/>
     </div>
   );
 }
-
 export { RichTextEditor };

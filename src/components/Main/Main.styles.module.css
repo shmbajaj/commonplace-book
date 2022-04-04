@@ -1,5 +1,6 @@
 .main{
-    background: #f5f5f5;
+    background: var(--white);
+    background: #ebebeb;
     overflow-x:hidden;
     overflow-y: scroll;
     min-height: 100vh;

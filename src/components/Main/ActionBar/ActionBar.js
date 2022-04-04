@@ -1,41 +1,160 @@
 import { LabelList } from "../../LabelList/LabelList";
 import styles from "./ActionBar.styles.module.css";
 import { actionIcons } from "data";
-
-const alist = [
-  {
-    labelText: "label",
-  },
-  {
-    labelText: "A label",
-  },
-  {
-    labelText: "The Label",
-  },
-  {
-    labelText: "Label",
-  },
-];
-const date = "April 01 2022";
+import { useFeatureBar, useNotes } from "context";
+import { useEffect } from "react";
+import { useState } from "react";
+import { postNote } from "context/Notes/Notes.context.helper";
 
 function ActionBarIcons() {
+  const {
+    notesState,
+    notesDispatch,
+    getColor,
+    replicaNote,
+    setReplicaNote,
+    deleteNote,
+    archiveNote,
+    updateNote,
+    unarchiveNote,
+    deleteArchiveNote,
+    removeFromDeleted,
+    addToDeleted,
+  } = useNotes();
+
+  const { state } = useFeatureBar();
+
+  async function deleteActiveNote() {
+    const type = state.activeFeature === "notes" ? "notes" : "archives";
+    const noteToBeDeleted = { ...notesState.activeNote, ...replicaNote };
+    if (type === "notes") {
+      const notes = await deleteNote(noteToBeDeleted);
+      notesDispatch({ type: "NOTES", payload: notes });
+    } else if (type === "archives") {
+      const { notes, archives } = await deleteArchiveNote(noteToBeDeleted);
+      notesDispatch({ type: "NOTES", payload: archives });
+    }
+    
+    if (state.activeFeature === "deleted") {
+      const notes = removeFromDeleted(notesState.deleted, noteToBeDeleted);
+      notesDispatch({ type: "UPDATE_DELETED", payload: notes }); 
+    } else {
+      const notes = addToDeleted(notesState.deleted, noteToBeDeleted);
+      notesDispatch({ type: "UPDATE_DELETED", payload: notes }); 
+    }
+  }
+
+  async function archiveActiveNote() {
+    const noteToBeArchived = { ...notesState.activeNote, ...replicaNote };
+    await updateNote(noteToBeArchived);
+    const { notes, archives } = await archiveNote(noteToBeArchived);
+    notesDispatch({ type: "NOTES", payload: notes });
+  }
+
+  async function unarchiveActiveNote() {
+    const noteToBeUnArchived = { ...notesState.activeNote, ...replicaNote };
+    const { notes, archives } = await unarchiveNote(noteToBeUnArchived);
+    notesDispatch({ type: "NOTES", payload: archives });
+  }
+
+  async function saveNote() {
+    const noteToBeSaved = { ...notesState.activeNote, ...replicaNote };
+    const notes = await updateNote(noteToBeSaved);
+    notesDispatch({ type: "NOTES", payload: notes });
+  }
+
+  function onClickHandler(event) {
+    const textContent = event.target?.textContent;
+    if (textContent === "priority_high") {
+      setReplicaNote((prev) => ({ ...prev, isPriorirty: !prev.isPriorirty }));
+    }
+    if (textContent === "palette") {
+      const newBackgroundColor = getColor();
+      setReplicaNote((prev) => ({
+        ...prev,
+        backgroundColor: newBackgroundColor,
+      }));
+    }
+    if (textContent === "delete") {
+      deleteActiveNote();
+    }
+    if (textContent === "archive" && state.activeFeature === "notes") {
+      archiveActiveNote();
+    }
+    if (textContent === "unarchive" && state.activeFeature === "archives") {
+      unarchiveActiveNote();
+    }
+
+    if (textContent === "save") {
+      saveNote();
+    }
+  }
+
+  function getIconName(featureName, iconName) {
+    if (featureName === "notes" && iconName === "archive") {
+      return "archive";
+    }
+
+    if (featureName === "notes" && iconName !== "archive") {
+      return iconName;
+    }
+
+    if (featureName === "archives" && iconName === "archive") {
+      return "unarchive";
+    }
+
+    if (featureName === "archives" && iconName !== "archive") {
+      return iconName;
+    }
+  }
+
   return actionIcons.map((icon, index) => (
     <span
       className={`material-icons-outlined ${styles["material_icons_extended"]}`}
       key={index}
+      style={{
+        color:
+          replicaNote.isPriorirty && icon["iconName"] === "priority_high"
+            ? "red"
+            : "currentcolor",
+      }}
+      onClick={(e) => onClickHandler(e)}
     >
-      {icon["iconName"]}
+      {getIconName(state.activeFeature, icon["iconName"])}
     </span>
   ));
 }
 
 function ActionBar() {
+  const {
+    notesState: { activeNote },
+    replicaNote,
+  } = useNotes();
+  const [actionItems, setActionItems] = useState({
+    labels: [],
+    createdOn: "",
+    isPriority: false,
+  });
+
+  useEffect(() => {
+    if (activeNote) {
+      setActionItems((prev) => ({
+        ...prev,
+        labels: replicaNote.labels,
+        createdOn: replicaNote.createdOn,
+        isPriority: replicaNote.isPriority,
+      }));
+    }
+  }, [activeNote]);
+
   return (
     <div className={styles["status_bar"]}>
-      <LabelList list={alist} active={false} />
+      <LabelList list={actionItems.labels} active={false} />
       <div className={styles["action_bar"]}>
-        <p className="mr-auto">{`Created on ${date}`}</p>
-        <ActionBarIcons />
+        <p className="mr-auto">{`${
+          actionItems.createdOn ? `Created on ${actionItems.createdOn}` : ""
+        }`}</p>
+        {activeNote && <ActionBarIcons />}
       </div>
     </div>
   );
