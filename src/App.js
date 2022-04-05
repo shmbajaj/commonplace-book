@@ -1,4 +1,10 @@
-import { Header, Footer, FeatureBar, FilterBar, Main } from "components";
+import {
+  Header,
+  Footer,
+  FeatureBar,
+  FilterBar,
+  Main,
+} from "components";
 import "./styles/styles.variables.css";
 import { FeatureBarProvider, FilterBarProvider, NotesProvider } from "context";
 
@@ -11,7 +17,7 @@ function getStyle() {
   };
 }
 
-function App() {
+function NoteTakingPage() {
   return (
     <FeatureBarProvider>
       <NotesProvider>
@@ -35,6 +41,10 @@ function App() {
       </NotesProvider>
     </FeatureBarProvider>
   );
+}
+
+function App() {
+  return <NoteTakingPage />;
 }
 
 export default App;
