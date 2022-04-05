@@ -25,6 +25,7 @@ function NotesProvider({ children }) {
     notes: [],
     deleted: [],
     activeNote: "",
+    labelsEditorDisplay: "none",
   });
   const [replicaNote, setReplicaNote] = useState({});
 

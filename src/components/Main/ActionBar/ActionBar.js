@@ -4,7 +4,6 @@ import { actionIcons } from "data";
 import { useFeatureBar, useNotes } from "context";
 import { useEffect } from "react";
 import { useState } from "react";
-import { postNote } from "context/Notes/Notes.context.helper";
 
 function ActionBarIcons() {
   const {
@@ -27,6 +26,7 @@ function ActionBarIcons() {
   async function deleteActiveNote() {
     const type = state.activeFeature === "notes" ? "notes" : "archives";
     const noteToBeDeleted = { ...notesState.activeNote, ...replicaNote };
+    await updateNote(noteToBeDeleted);
     if (type === "notes") {
       const notes = await deleteNote(noteToBeDeleted);
       notesDispatch({ type: "NOTES", payload: notes });
@@ -34,13 +34,13 @@ function ActionBarIcons() {
       const { notes, archives } = await deleteArchiveNote(noteToBeDeleted);
       notesDispatch({ type: "NOTES", payload: archives });
     }
-    
+
     if (state.activeFeature === "deleted") {
       const notes = removeFromDeleted(notesState.deleted, noteToBeDeleted);
-      notesDispatch({ type: "UPDATE_DELETED", payload: notes }); 
+      notesDispatch({ type: "UPDATE_DELETED", payload: notes });
     } else {
       const notes = addToDeleted(notesState.deleted, noteToBeDeleted);
-      notesDispatch({ type: "UPDATE_DELETED", payload: notes }); 
+      notesDispatch({ type: "UPDATE_DELETED", payload: notes });
     }
   }
 
@@ -61,6 +61,10 @@ function ActionBarIcons() {
     const noteToBeSaved = { ...notesState.activeNote, ...replicaNote };
     const notes = await updateNote(noteToBeSaved);
     notesDispatch({ type: "NOTES", payload: notes });
+  }
+
+  async function handleLabelsEditor() {
+    notesDispatch({ type: "TOGGLE_LABELS_EDITOR", payload: "grid" });
   }
 
   function onClickHandler(event) {
@@ -87,6 +91,10 @@ function ActionBarIcons() {
 
     if (textContent === "save") {
       saveNote();
+    }
+
+    if (textContent === "label") {
+      handleLabelsEditor();
     }
   }
 

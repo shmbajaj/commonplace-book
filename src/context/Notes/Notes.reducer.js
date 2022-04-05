@@ -40,6 +40,11 @@ function reducerFunction(state, { type, payload }) {
         ...state,
         deleted: [payload],
       };
+      case "TOGGLE_LABELS_EDITOR":
+        return{
+          ...state,
+          labelsEditorDisplay: payload,
+        }
 
     default:
       return state;
