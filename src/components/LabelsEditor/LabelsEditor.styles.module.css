@@ -1,0 +1,99 @@
+
+.labelEditorContainer {
+  min-width: calc(16px * 25);
+  max-width: calc(16px * 25);
+  min-height: calc(16px * 20);
+  max-height: calc(16px * 20);
+  overflow: auto;
+  overflow-x: hidden;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 60px repeat(auto-fill, minmax(20px, 40px));
+  justify-items: center;
+  row-gap: 8px;
+  border: 2px solid;
+  position: absolute;
+  transform: translate(50%, 50%);
+  border: 2px solid;
+  box-shadow: 4px 4px 5px turquoise;
+  background-color: white;
+  z-index: 10;
+}
+
+.labelEditorContainer > :first-child {
+  border-bottom: 1px solid;
+}
+
+.labelEditorHeader,
+.labelEditorInputArea {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.labelEditorHeader {
+  position: sticky;
+  top: 0;
+  background: white;
+}
+
+.labelEditorInputArea {
+  justify-content: space-between;
+}
+
+.labelBarWrapper {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr;
+  row-gap: 4px;
+}
+
+.labelBar {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 50px 300px 40px;
+}
+
+.labelBar .labelText {
+  min-width: fit-content;
+  max-width: 300px;
+  word-wrap: break-word;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.endIcon,
+.doneIcon {
+  padding-right: 20px;
+  cursor: pointer;
+}
+
+.endIcon:hover {
+  font-weight: bolder;
+  color: red;
+}
+
+.doneIcon:hover {
+  font-weight: bolder;
+  color: green;
+}
+
+.labelEditorHeader > :last-child {
+  margin-left: auto;
+}
+
+.labelInputArea {
+  overflow-y: hidden;
+  overflow-x: scroll;
+  border: 0;
+  outline: 0;
+  border-bottom: 1px solid;
+  padding: 2px 5px;
+}
+
+.labelInputArea:focus {
+  border: 0;
+  outline: 0;
+  border-bottom: 1px solid;
+}
