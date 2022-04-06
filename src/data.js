@@ -32,34 +32,52 @@ const featureNotes = {
   labels: false,
   archived: false,
   deleted: false,
-}
+};
 
-const actionIcons = [
-  {
-    iconText: "Priority High",
-    iconName: "priority_high",
-  },
-  {
-    iconText: "Background Color",
-    iconName: "palette",
-  },
-  {
-    iconText: "Labels",
-    iconName: "label",
-  },
-  {
-    iconText: "Archive",
-    iconName: "archive",
-  },
-  {
-    iconText: "Trash",
-    iconName: "delete",
-  },
-  {
-    iconText: "Save Note",
-    iconName: "save",
-  },
-];
+const actionIcons = {
+  notes: [
+    {
+      iconText: "Priority High",
+      iconName: "priority_high",
+    },
+    {
+      iconText: "Background Color",
+      iconName: "palette",
+    },
+    {
+      iconText: "Labels",
+      iconName: "label",
+    },
+    {
+      iconText: "Archive",
+      iconName: "archive",
+    },
+    {
+      iconText: "Trash",
+      iconName: "delete",
+    },
+    {
+      iconText: "Save Note",
+      iconName: "save",
+    },
+  ],
+  archives: [
+    {
+      iconText: "Archive",
+      iconName: "archive",
+    },
+    {
+      iconText: "Trash",
+      iconName: "delete",
+    },
+  ],
+  deleted: [
+    {
+      iconText: "Trash",
+      iconName: "delete",
+    },
+  ],
+};
 
 const appName = "Commonplace Book";
 
