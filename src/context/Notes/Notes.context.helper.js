@@ -12,7 +12,7 @@ function createNewNote() {
     text: "",
     title: "New Note",
     labels: [],
-    backgroundColor: "#ebebeb",
+    backgroundColor: "var(--color-ebebeb)",
     isPriorirty: false,
     createdOn: new Date().toLocaleString(),
     isArchived: false,
@@ -128,11 +128,13 @@ async function deleteArchiveNote(note) {
 }
 
 function removeFromDeleted(deleted, tobeDeleted) {
-  return [...deleted].filter((note) => note._id !== tobeDeleted._id);
+  const prevDeletedNotes = [...deleted];
+  return [...prevDeletedNotes].filter((note) => note._id !== tobeDeleted._id);
 }
 
 function addToDeleted(deleted, tobeAdded) {
-  return [...deleted, tobeAdded];
+  const prevDeletedNotes = [...deleted];
+  return [...prevDeletedNotes, tobeAdded];
 }
 
 export {

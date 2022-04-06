@@ -1,10 +1,10 @@
-function reducerFunction(state, { type, payload }) {
+function reducerFunction(state, { type, payload, hardReset = null }) {
   switch (type) {
     case "NOTES":
       return {
         ...state,
         notes: payload,
-        activeNote: "",
+        activeNote: hardReset ? hardReset : "",
       };
     case "ACTIVE_NOTE":
       return {
@@ -40,11 +40,11 @@ function reducerFunction(state, { type, payload }) {
         ...state,
         deleted: [payload],
       };
-      case "TOGGLE_LABELS_EDITOR":
-        return{
-          ...state,
-          labelsEditorDisplay: payload,
-        }
+    case "TOGGLE_LABELS_EDITOR":
+      return {
+        ...state,
+        labelsEditorDisplay: payload,
+      };
 
     default:
       return state;
