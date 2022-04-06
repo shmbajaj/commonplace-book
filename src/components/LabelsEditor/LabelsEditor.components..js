@@ -1,5 +1,5 @@
 import styles from "./LabelsEditor.styles.module.css";
-import { useNotes } from "context";
+import { useNotes, useFeatureBar } from "context";
 import { useState } from "react";
 import { v4 as uuid } from "uuid";
 
@@ -26,11 +26,27 @@ export function GetLablels() {
   );
 }
 function CloseIcon() {
-  const { notesState, notesDispatch, updateNote, replicaNote } = useNotes();
+  const {
+    notesState,
+    notesDispatch,
+    updateNote,
+    replicaNote,
+    archiveNote,
+    setReplicaNote,
+  } = useNotes();
+  const { state } = useFeatureBar();
   return (
     <span
       onClick={() =>
-        onCloseClickHandler(notesState, notesDispatch, updateNote, replicaNote)
+        onCloseClickHandler(
+          notesState,
+          notesDispatch,
+          updateNote,
+          replicaNote,
+          archiveNote,
+          setReplicaNote,
+          state
+        )
       }
       className={`material-icons-outlined ${styles["endIcon"]}`}
     >
@@ -96,12 +112,20 @@ async function onCloseClickHandler(
   notesState,
   notesDispatch,
   updateNote,
-  replicaNote
+  replicaNote,
+  state
 ) {
   notesDispatch({ type: "TOGGLE_LABELS_EDITOR", payload: "none" });
+  //@Feature: It's saves note on label editor close action...
   const noteToBeUpdated = { ...notesState.activeNote, ...replicaNote };
-  const notes = await updateNote(noteToBeUpdated);
-  notesDispatch({ type: "NOTES", payload: notes });
+  if (state.activeFeature === "notes") {
+    const notes = await updateNote(noteToBeUpdated);
+    notesDispatch({
+      type: "NOTES",
+      payload: notes,
+      hardReset: noteToBeUpdated,
+    });
+  } 
 }
 
 async function removeLabel(setReplicaNote, _id) {

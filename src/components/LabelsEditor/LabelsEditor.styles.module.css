@@ -15,7 +15,7 @@
   position: absolute;
   transform: translate(50%, 50%);
   border: 2px solid;
-  box-shadow: 4px 4px 5px turquoise;
+  box-shadow: 4px 4px 5px var(--logo-color);
   background-color: white;
   z-index: 10;
 }

@@ -7,7 +7,6 @@ import { useState, useEffect } from "react";
 
 function FilterBar() {
   const { notesState } = useNotes();
-  // const filteredNotes = notes;
   const [filteredNotes, setFilteredNotes] = useState([]);
   const { filterState, dispatch, inPriorirtyNotes, sortByCreatedOn } =
     useFilterBar();

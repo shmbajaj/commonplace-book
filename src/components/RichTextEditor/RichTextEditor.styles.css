@@ -3,14 +3,14 @@
   margin-top: 0.75em;
 }
 
-.ProseMirror{
-  font-family: 'Courier New', Courier, monospace;
+.ProseMirror {
+  font-family: "Courier New", Courier, monospace;
   z-index: 1;
   margin-top: 32px;
-  margin:16px 0 16px 16px;
+  margin: 16px 0 16px 16px;
 }
 
-.ProseMirror:focus{
+.ProseMirror:focus {
   outline: 0;
   border: 0;
 }
@@ -83,8 +83,8 @@
   height: 0;
 }
 
-.textEditor{
+.textEditor {
   z-index: 1;
-  background: #f5f5f5;
-  background: #ebebeb;
+  background: var(--color-f5f5f5);
+  background: var(--color-ebebeb);
 }

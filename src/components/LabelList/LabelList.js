@@ -1,11 +1,7 @@
 import { Label } from "../Label/Label";
 import styles from "./LabelList.styles.module.css";
-import { useNotes } from "context";
 
 function LabelList({ list, active }) {
-  const {
-    notesState: { activeNote },
-  } = useNotes();
   return (
     <div className={styles.listWrapper}>
       {list && (

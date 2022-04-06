@@ -5,8 +5,8 @@
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 2fr 1fr;
-  background: #f5f5f5;
-  background: #ebebeb;
+  background: var(--color-f5f5f5);
+  background: var(--color-ebebeb);
 }
 
 .footer_author_info {

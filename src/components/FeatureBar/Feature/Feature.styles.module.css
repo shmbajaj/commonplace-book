@@ -7,7 +7,6 @@
 }
 
 .feature:hover {
-  /* background-color: var(--color-3a3a3a); */
   background-color: var(--color-e5e5e5);
   background-color: lightgrey;
   background-color: var(--logo-color);
@@ -44,7 +43,6 @@
 }
 
 .iconText {
-  /* color: var(--white); */
   text-align: left;
   pointer-events: none;
   font-weight: bold;

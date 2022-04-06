@@ -4,7 +4,8 @@ import styles from "./Navbar.styles.module.css";
 function Navbar() {
   return (
     <nav className={styles.navbar}>
-      <Link
+      {/* @Navbar for Auth: if built then used till then some bytes consumer */}
+      {/* <Link
         to="/login"
         className={`h3 ${styles.navbar_link} ${styles.navbar_action} `}
       >
@@ -21,7 +22,16 @@ function Navbar() {
         className={`h3 ${styles.navbar_link} ${styles.navbar_action} ${styles.navbar_action_cta}`}
       >
         Start Taking Notes
-      </Link>
+      </Link> */}
+      <div></div>
+      <div></div>
+      <a
+        href="https://github.com/shmbajaj/commonplace-book/"
+        target="_blank"
+        className={`h3 ${styles.navbar_link} ${styles.navbar_action} ${styles.navbar_action_cta}`}
+      >
+        Github
+      </a>
     </nav>
   );
 }

@@ -28,18 +28,24 @@ function ActionBarIcons() {
     const noteToBeDeleted = { ...notesState.activeNote, ...replicaNote };
     await updateNote(noteToBeDeleted);
     if (type === "notes") {
+      await updateNote(noteToBeDeleted);
       const notes = await deleteNote(noteToBeDeleted);
       notesDispatch({ type: "NOTES", payload: notes });
+      const updatedDeltedNotes = addToDeleted(
+        notesState.deleted,
+        noteToBeDeleted
+      );
+      notesDispatch({ type: "UPDATE_DELETED", payload: updatedDeltedNotes });
     } else if (type === "archives") {
       const { notes, archives } = await deleteArchiveNote(noteToBeDeleted);
       notesDispatch({ type: "NOTES", payload: archives });
-    }
-
-    if (state.activeFeature === "deleted") {
+      const updatedDeltedNotes = addToDeleted(
+        notesState.deleted,
+        noteToBeDeleted
+      );
+      notesDispatch({ type: "UPDATE_DELETED", payload: updatedDeltedNotes });
+    } else if (state.activeFeature === "deleted") {
       const notes = removeFromDeleted(notesState.deleted, noteToBeDeleted);
-      notesDispatch({ type: "UPDATE_DELETED", payload: notes });
-    } else {
-      const notes = addToDeleted(notesState.deleted, noteToBeDeleted);
       notesDispatch({ type: "UPDATE_DELETED", payload: notes });
     }
   }
@@ -59,8 +65,13 @@ function ActionBarIcons() {
 
   async function saveNote() {
     const noteToBeSaved = { ...notesState.activeNote, ...replicaNote };
-    const notes = await updateNote(noteToBeSaved);
-    notesDispatch({ type: "NOTES", payload: notes });
+    if (state.activeFeature === "notes") {
+      const notes = await updateNote(noteToBeSaved);
+      notesDispatch({
+        type: "NOTES",
+        payload: notes,
+      });
+    }
   }
 
   async function handleLabelsEditor() {
@@ -116,19 +127,34 @@ function ActionBarIcons() {
     }
   }
 
-  return actionIcons.map((icon, index) => (
+  function getAllowedActionsIconsForAFeature(featureName, actionIcons) {
+    if (featureName === "notes") {
+      return actionIcons["notes"];
+    }
+
+    if (featureName === "archives") {
+      return actionIcons["archives"];
+    }
+
+    return actionIcons["deleted"];
+  }
+
+  return getAllowedActionsIconsForAFeature(
+    state.activeFeature,
+    actionIcons
+  ).map(({ iconName }, index) => (
     <span
       className={`material-icons-outlined ${styles["material_icons_extended"]}`}
       key={index}
       style={{
         color:
-          replicaNote.isPriorirty && icon["iconName"] === "priority_high"
+          replicaNote.isPriorirty && iconName === "priority_high"
             ? "red"
             : "currentcolor",
       }}
       onClick={(e) => onClickHandler(e)}
     >
-      {getIconName(state.activeFeature, icon["iconName"])}
+      {getIconName(state.activeFeature, iconName)}
     </span>
   ));
 }
@@ -159,9 +185,11 @@ function ActionBar() {
     <div className={styles["status_bar"]}>
       <LabelList list={actionItems.labels} active={false} />
       <div className={styles["action_bar"]}>
-        <p className="mr-auto">{`${
-          actionItems.createdOn ? `Created on ${actionItems.createdOn}` : ""
-        }`}</p>
+        {activeNote && (
+          <p className="mr-auto">{`${
+            actionItems.createdOn ? `Created on ${actionItems.createdOn}` : ""
+          }`}</p>
+        )}
         {activeNote && <ActionBarIcons />}
       </div>
     </div>

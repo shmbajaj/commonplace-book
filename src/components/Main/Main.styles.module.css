@@ -1,12 +1,12 @@
-.main{
-    background: var(--white);
-    background: #ebebeb;
-    overflow-x:hidden;
-    overflow-y: scroll;
-    min-height: 100vh;
-    max-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 80px;
-    border-left: 1px solid lightgrey;
+.main {
+  background: var(--white);
+  background: var(--color-ebebeb);
+  overflow-x: hidden;
+  overflow-y: scroll;
+  min-height: 100vh;
+  max-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 80px;
+  border-left: 1px solid lightgrey;
 }

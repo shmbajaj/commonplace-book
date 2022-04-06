@@ -16,31 +16,36 @@ const CustomDocument = Document.extend({
 });
 
 function RichTextEditor() {
-  const [noteBackgroundColor, setNoteBackgroundColor] = useState("#ebebeb");
+  const [noteBackgroundColor, setNoteBackgroundColor] = useState(
+    "var(--color-ebebeb)"
+  );
   const [noteHtml, setNoteHtml] = useState(``);
   const {
     notesState: { activeNote },
     replicaNote,
     setReplicaNote,
   } = useNotes();
-  const {state: {activeFeature}} = useFeatureBar();
-
+  const {
+    state: { activeFeature },
+  } = useFeatureBar();
 
   useEffect(() => {
     const { text } = activeNote;
-    setNoteBackgroundColor("#ebebeb");
+    setNoteBackgroundColor("var(--color-ebebeb)");
     if (editor) {
       editor.options.editable = true;
       editor.commands?.setContent(text, { emitUpdate: true });
-      if(activeFeature === "deleted"){
+      if (activeFeature !== "notes" || !activeNote) {
         editor.options.editable = false;
       }
     }
-    
   }, [activeNote]);
 
   useEffect(() => {
-    if (replicaNote.backgroundColor !== "#ebebeb" && replicaNote.backgroundColor) {
+    if (
+      replicaNote.backgroundColor !== "var(--color-ebebeb)" &&
+      replicaNote.backgroundColor
+    ) {
       setNoteBackgroundColor(replicaNote.backgroundColor);
     }
   }, [replicaNote.backgroundColor]);
@@ -87,7 +92,10 @@ function RichTextEditor() {
   return (
     <div className="textEditor">
       <MenuBar editor={editor} />
-      <EditorContent editor={editor}  style={{ backgroundColor: noteBackgroundColor}}/>
+      <EditorContent
+        editor={editor}
+        style={{ backgroundColor: noteBackgroundColor }}
+      />
     </div>
   );
 }

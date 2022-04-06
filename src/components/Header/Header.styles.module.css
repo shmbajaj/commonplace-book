@@ -4,6 +4,6 @@
   grid-template-columns: 1fr 2fr;
   border-bottom: 2px solid var(--black);
   padding-left: var(--size-6);
-  background: #f5f5f5;
-  background: #ebebeb;
+  background: var(--color-f5f5f5);
+  background: var(--color-ebebeb);
 }

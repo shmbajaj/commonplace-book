@@ -1,8 +1,6 @@
 import styles from "./Note.styles.module.css";
 import { LabelList } from "../../LabelList/LabelList";
 import { useNotes, useFeatureBar } from "context";
-import { useState } from "react";
-import { useEffect } from "react";
 
 function Note({ note }) {
   const { notesState, notesDispatch, updateNote, replicaNote, archiveNote,setReplicaNote } =
@@ -31,7 +29,7 @@ function Note({ note }) {
     notesDispatch({ type: "ACTIVE_NOTE", payload: note });
   }
 
-  function onNoteClickHandler(note) {
+  function onNoteClick(note) {
     if (notesState.activeNote) {
       updateNotesIndependtly(note);
     }
@@ -44,7 +42,7 @@ function Note({ note }) {
       className={`${styles.metaNote} ${
         note._id === notesState.activeNote._id ? styles.active : ""
       }`}
-      onClick={() => onNoteClickHandler(note)}
+      onClick={() => onNoteClick(note)}
     >
       <p className={styles.title}>{note.title}</p>
       <LabelList
