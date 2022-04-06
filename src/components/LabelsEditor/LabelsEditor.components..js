@@ -34,7 +34,7 @@ function CloseIcon() {
     archiveNote,
     setReplicaNote,
   } = useNotes();
-  const { state } = useFeatureBar();
+  const { state } = useFeatureBar(); 
   return (
     <span
       onClick={() =>
@@ -43,8 +43,6 @@ function CloseIcon() {
           notesDispatch,
           updateNote,
           replicaNote,
-          archiveNote,
-          setReplicaNote,
           state
         )
       }
@@ -125,7 +123,7 @@ async function onCloseClickHandler(
       payload: notes,
       hardReset: noteToBeUpdated,
     });
-  } 
+  }
 }
 
 async function removeLabel(setReplicaNote, _id) {

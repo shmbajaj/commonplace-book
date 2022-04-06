@@ -31,13 +31,19 @@ function RichTextEditor() {
 
   useEffect(() => {
     const { text } = activeNote;
-    setNoteBackgroundColor("var(--color-ebebeb)");
+    if (!activeNote) {
+      setNoteBackgroundColor("var(--color-ebebeb)");
+    }
     if (editor) {
       editor.options.editable = true;
       editor.commands?.setContent(text, { emitUpdate: true });
       if (activeFeature !== "notes" || !activeNote) {
         editor.options.editable = false;
       }
+    }
+
+    if (activeNote && editor) {
+      setNoteBackgroundColor(replicaNote.backgroundColor);
     }
   }, [activeNote]);
 

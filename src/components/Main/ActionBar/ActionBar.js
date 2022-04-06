@@ -65,6 +65,7 @@ function ActionBarIcons() {
 
   async function saveNote() {
     const noteToBeSaved = { ...notesState.activeNote, ...replicaNote };
+    console.log(noteToBeSaved);
     if (state.activeFeature === "notes") {
       const notes = await updateNote(noteToBeSaved);
       notesDispatch({
