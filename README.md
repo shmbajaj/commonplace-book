@@ -29,6 +29,10 @@ Commonplace book is an note taking app, which helps to compile your knowledge, b
  [ ❌ ] Responsive
 
  ## Preview
+ 
+ https://user-images.githubusercontent.com/29247011/161970276-e4acd32e-3426-46f6-9e7f-134e318ffda8.mp4
+
+https://user-images.githubusercontent.com/29247011/161970294-893b7c17-e01e-4b88-80b0-8e4942e3b608.mp4
 
  ## Get app from here 👇
 [Commonplace Book](https://commonplace-book.netlify.app/)
